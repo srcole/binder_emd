@@ -1,3 +1,6 @@
+import numpy as np
+import scipy as sp
+
 def emd(x, nIMF = 3, stoplim = .001):
     """Perform empirical mode decomposition to extract 'niMF' components out of the signal 'x'."""
     
@@ -50,7 +53,7 @@ def _emd_comperror(h, mean, pks, trs):
 
 
 def _emd_complim(mean_t, pks, trs):
-	"""Discard the mean extrema envelope past the first and last extrema"""
+    """Discard the mean extrema envelope past the first and last extrema"""
     samp_start = np.max((np.min(pks),np.min(trs)))
     samp_end = np.min((np.max(pks),np.max(trs))) + 1
     mean_t[:samp_start] = mean_t[samp_start]
